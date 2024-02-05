@@ -18,30 +18,26 @@ import java.util.Set;
 
 @Getter
 @ToString
-@Table(indexes = {@Index(columnList = "title"), @Index(columnList = "hashtag"), @Index(columnList = "createdAt"), @Index(columnList = "createdBy")})
-@EntityListeners(AuditingEntityListener.class)
+@Table(indexes = {
+        @Index(columnList = "title"),
+        @Index(columnList = "hashtag"),
+        @Index(columnList = "createdAt"),
+        @Index(columnList = "createdBy")
+})
 @Entity
-public class Article {
+public class Article extends AuditingFields{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @Setter @Column(nullable = false) private String title;
     @Setter @Column(nullable = false, length = 10000) private String content;
-
-
     @Setter @Column(length = 255) private String hashtag;
 
     @OrderBy("id")
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     @ToString.Exclude
     private final Set<ArticleComment> articleCommentSet = new LinkedHashSet<>();
-
-    @CreatedDate @Column(nullable = false) private LocalDateTime createdAt;
-    @CreatedBy @Column(nullable = false, length = 100) private String createdBy;
-    @LastModifiedDate @Column(nullable = false) private LocalDateTime modifiedAt;
-    @LastModifiedBy @Column(nullable = false, length = 100) private String modifiedBy;
 
     protected Article() {}
 

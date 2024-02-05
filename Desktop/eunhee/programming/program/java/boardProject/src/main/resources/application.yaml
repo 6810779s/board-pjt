@@ -13,6 +13,13 @@ spring:
     username: root
     password: 12341234
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+#spring:
+#  datasource:
+#    url: jdbc:h2:mem:testdb
+#    username: sa
+#    driver-class-name: org.h2.Driver
+
   jpa:
     defer-datasource-initialization: true
     hibernate.ddl-auto: create
@@ -24,18 +31,23 @@ spring:
     base-path: /api
     detection-strategy: annotated
 
-  h2:
-    console:
-      enabled: false
+#  h2:
+#    console:
+#      enabled: false
   sql:
     init:
       mode: always
-
+#    url:jdbc:h2:h2DB:testdb
+#      username:sa
+#      driver-class-name:org.h2.Driver
 ---
 
+#JpaRepositoryTest에 @ActiveProfiles("testdb") 와
+#@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) 붙여주기
 spring:
   config.activate.on-profile: testdb
-#  datasource:
-#    url: jdbc:h2:mem:testdb
-#    driver-class-name: org.h2.Driver
-#  sql.init.mode: always
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+  sql.init.mode: always
+#test.database.replace:none
