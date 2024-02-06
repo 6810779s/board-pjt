@@ -1,0 +1,18 @@
+{
+  "groups": [
+    {
+      "name": "spring.thymeleaf3",
+      "type": "org.study.board.config.ThymeleafConfig$Thymeleaf3Properties",
+      "sourceType": "org.study.board.config.ThymeleafConfig$Thymeleaf3Properties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spring.thymeleaf3.decoupled-logic",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.study.board.config.ThymeleafConfig$Thymeleaf3Properties",
+      "defaultValue": false
+    }
+  ],
+  "hints": []
+}
