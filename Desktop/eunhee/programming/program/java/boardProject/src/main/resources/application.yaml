@@ -15,7 +15,6 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 
-
   #spring:
 #  datasource:
 #    url: jdbc:h2:mem:testdb
@@ -32,13 +31,14 @@ spring:
   data.rest:
     base-path: /api
     detection-strategy: annotated
+  sql:
+    init:
+      mode: always
+  thymeleaf3.decoupled-logic: true
 
 #  h2:
 #    console:
 #      enabled: false
-  sql:
-    init:
-      mode: always
 #    url:jdbc:h2:h2DB:testdb
 #      username:sa
 #      driver-class-name:org.h2.Driver
@@ -56,4 +56,5 @@ spring:
     rest:
       base-path: /api
       detection-strategy: annotated
+
 #test.database.replace:none

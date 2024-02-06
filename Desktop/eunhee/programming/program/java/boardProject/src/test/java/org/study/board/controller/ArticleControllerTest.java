@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class ArticleControllerTest {
     private final MockMvc mvc;
 
-    public ArticleControllerTest(@Autowired MockMvc mvc){
+    public ArticleControllerTest(@Autowired MockMvc mvc) {
         this.mvc = mvc;
     }
 
@@ -25,14 +25,14 @@ class ArticleControllerTest {
     @Test
     public void given_when_then() throws Exception {
 
-    mvc.perform(get("/articles"))
-            .andExpect(status().isOk())
-            .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-            .andExpect(view().name("articles/index"))
-            .andExpect(model().attributeExists("articles"));
+        mvc.perform(get("/articles"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andExpect(view().name("articles/index"))
+                .andExpect(model().attributeExists("articles"));
     }
 
-    @Disabled("구현 중")
+
     @DisplayName("[view][Get] 게시글 상세 페이지 - 정상 호출")
     @Test
     public void givenNothing_whenRequestingArticleView_thenReturnsArticleView() throws Exception {
