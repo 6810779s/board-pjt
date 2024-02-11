@@ -8,11 +8,11 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 import org.study.board.config.JpaConfig;
 import org.study.board.domain.Article;
+import org.study.board.domain.UserAccount;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("JPA 연결 테스트")
 @ActiveProfiles("testdb")
@@ -21,11 +21,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class JpaRepositoryTest {
     private final ArticleRepository articleRepository;
     private final ArticleCommentRepository articleCommentRepository;
+    private final UserAccountRepository userAccountRepository;
 
     public JpaRepositoryTest(@Autowired ArticleRepository articleRepository,
-                             @Autowired ArticleCommentRepository articleCommentRepository) {
+                             @Autowired ArticleCommentRepository articleCommentRepository,
+                             @Autowired UserAccountRepository userAccountRepository) {
         this.articleRepository = articleRepository;
         this.articleCommentRepository = articleCommentRepository;
+        this.userAccountRepository = userAccountRepository;
     }
 
     @DisplayName("select 테스트")
@@ -42,7 +45,9 @@ class JpaRepositoryTest {
     @Test
     void givenTestData_whenInserting_thenWorksFine() {
         long previousCount = articleRepository.count();
-        Article savedArticle = articleRepository.save(Article.of("new article", "new content","#spring"));
+        UserAccount userAccount = userAccountRepository.save(UserAccount.of("eun", "pw",null,null,null));
+        Article savedArticle = articleRepository.save(Article.of(userAccount,"new article", "new content","#spring"));
+        articleRepository.save(savedArticle);
         assertThat(articleRepository.count()).isEqualTo(previousCount + 1);
     }
 

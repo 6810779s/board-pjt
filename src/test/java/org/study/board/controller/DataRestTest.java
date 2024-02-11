@@ -70,4 +70,13 @@ public class DataRestTest {
                 .andExpect(content().contentType(MediaType.valueOf("application/hal+json")));
 
     }
+
+    void givenNothing_whenRequestingUserAccounts_ThenThrowsException() throws Exception{
+        mvc.perform(get("/api/userAccounts")).andExpect(status().isNotFound());
+        mvc.perform(get("/api/userAccounts")).andExpect(status().isNotFound());
+        mvc.perform(get("/api/userAccounts")).andExpect(status().isNotFound());
+        mvc.perform(get("/api/userAccounts")).andExpect(status().isNotFound());
+        mvc.perform(get("/api/userAccounts")).andExpect(status().isNotFound());
+        mvc.perform(get("/api/userAccounts")).andExpect(status().isNotFound());
+    }
 }
